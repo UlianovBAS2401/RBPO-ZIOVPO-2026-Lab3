@@ -1,0 +1,219 @@
+@baseUrl = http://localhost:8080
+
+###
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "fullName": "Кузнецов Алексей Николаевич",
+  "email": "kuznetsov@example.com",
+  "phone": "+79998887766"
+}
+
+###
+POST {{baseUrl}}/api/premises
+Content-Type: application/json
+
+{
+  "address": "г. Москва, пр-т Мира, д. 45, кв. 12",
+  "area": 64.20,
+  "userId": 1
+}
+
+###
+POST {{baseUrl}}/api/meters
+Content-Type: application/json
+
+{
+  "premisesId": 1,
+  "resourceType": "COLD_WATER",
+  "serialNumber": "MTR-CW-SCENARIO-99",
+  "unitRate": 55.40,
+  "status": "ACTIVE"
+}
+
+###
+POST {{baseUrl}}/api/meter-readings
+Content-Type: application/json
+
+{
+  "meterId": 1,
+  "period": "2026-10",
+  "readingValue": 150.000
+}
+
+###
+POST {{baseUrl}}/api/meter-readings/1/verify?status=VERIFIED
+
+###
+POST {{baseUrl}}/api/meter-readings
+Content-Type: application/json
+
+{
+  "meterId": 1,
+  "period": "2026-11",
+  "readingValue": 162.500
+}
+
+###
+POST {{baseUrl}}/api/meter-readings/5/verify?status=VERIFIED
+
+###
+POST {{baseUrl}}/api/utility-charges/calculate?meterId=1&period=2026-09
+
+###
+POST {{baseUrl}}/api/utility-charges/2/pay
+
+###
+GET {{baseUrl}}/api/utility-charges/2
+
+###
+GET {{baseUrl}}/api/users
+
+###
+GET {{baseUrl}}/api/users/1
+
+###
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "fullName": "Соколов Дмитрий Олегович",
+  "email": "sokolov@example.com",
+  "phone": "+79001234567"
+}
+
+###
+PATCH {{baseUrl}}/api/users/1
+Content-Type: application/json
+
+{
+  "phone": "+79990001122"
+}
+
+###
+DELETE {{baseUrl}}/api/users/3
+
+###
+GET {{baseUrl}}/api/premises
+
+###
+GET {{baseUrl}}/api/premises/1
+
+###
+POST {{baseUrl}}/api/premises
+Content-Type: application/json
+
+{
+  "address": "г. Санкт-Петербург, Невский пр., д. 100, кв. 5",
+  "area": 85.00,
+  "userId": 2
+}
+
+###
+PATCH {{baseUrl}}/api/premises/1
+Content-Type: application/json
+
+{
+  "area": 56.00
+}
+
+###
+DELETE {{baseUrl}}/api/premises/3
+
+###
+GET {{baseUrl}}/api/meters
+
+###
+GET {{baseUrl}}/api/meters/1
+
+###
+POST {{baseUrl}}/api/meters
+Content-Type: application/json
+
+{
+  "premisesId": 2,
+  "resourceType": "ELECTRICITY",
+  "serialNumber": "MTR-EL-9001",
+  "unitRate": 6.80,
+  "status": "ACTIVE"
+}
+
+###
+PATCH {{baseUrl}}/api/meters/1
+Content-Type: application/json
+
+{
+  "unitRate": 52.30,
+  "status": "ACTIVE"
+}
+
+###
+DELETE {{baseUrl}}/api/meters/4
+
+###
+GET {{baseUrl}}/api/meter-readings
+
+###
+GET {{baseUrl}}/api/meter-readings/1
+
+###
+POST {{baseUrl}}/api/meter-readings
+Content-Type: application/json
+
+{
+  "meterId": 2,
+  "period": "2026-10",
+  "readingValue": 395.000,
+  "verificationStatus": "PENDING"
+}
+
+###
+POST {{baseUrl}}/api/meter-readings/2/verify?status=VERIFIED
+
+###
+PATCH {{baseUrl}}/api/meter-readings/1
+Content-Type: application/json
+
+{
+  "readingValue": 121.000
+}
+
+###
+DELETE {{baseUrl}}/api/meter-readings/4
+
+###
+GET {{baseUrl}}/api/utility-charges
+
+###
+GET {{baseUrl}}/api/utility-charges/1
+
+###
+POST {{baseUrl}}/api/utility-charges
+Content-Type: application/json
+
+{
+  "premisesId": 1,
+  "meterId": 1,
+  "period": "2026-10",
+  "volume": 10.000,
+  "amount": 509.00,
+  "status": "CALCULATED"
+}
+
+###
+POST {{baseUrl}}/api/utility-charges/calculate?meterId=1&period=2026-09
+
+###
+POST {{baseUrl}}/api/utility-charges/2/pay
+
+###
+PATCH {{baseUrl}}/api/utility-charges/1
+Content-Type: application/json
+
+{
+  "status": "PAID"
+}
+
+###
+DELETE {{baseUrl}}/api/utility-charges/1
